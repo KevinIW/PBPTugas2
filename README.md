@@ -69,7 +69,8 @@ Link Url Website : https://website-v1.adaptable.app/main/
         dengan menggunakan import path kita mendefinisikan pola urls nya lalu menggunakan fungsi show_main
         dari modulnya untuk menampilkan views.py ketika url diakses.
 
-    g.  Melakukan deployment ke Adaptable terhadap aplikasi yang sudah dibuat sehingga nantinya dapat diakses oleh teman-temanmu melalui Internet.
+    g. Melakukan deployment ke Adaptable terhadap aplikasi yang sudah dibuat sehingga nantinya dapat diakses oleh teman-temanmu melalui Internet.
+
         Membuat akun adaptable lalu memasukan repo github projek yang diinginkan. Lalu memilih python app template , postgres sql dan memberikan python version serta menuliskan command python manage.py migrate && gunicorn pbptugas2.wsgi. Lalu memberikan nama aplikasi dan http port. Setelah itu mendeploynya ke adaptable.
 
 
