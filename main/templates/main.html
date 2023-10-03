@@ -4,18 +4,85 @@
 {% block content %}
 
 
-    <h1>Pengelolaan Stok Produk toko PBP</h1>
+    <h1 id = "px1">Pengelolaan Stok Produk toko PBP</h1>
 
 
-    <h5>Nama Aplikasi: </h5>
-    <p>{{ application }}</p>
-    <h5>Name: </h5>
-    <p>{{ name }}<p>
-    <h5>Class: </h5>
-    <p>{{ class }}<p>
+    <h5 id = "px2">Nama Aplikasi: </h5>
+    <p id = "px3">{{ application }}</p>
+    <h5 id = "header">Name: </h5>
+    <p id = "px5"> {{ name }}<p>
+    <h5 class  = "class">Class: </h5>
+    <p class = "px4">{{ class }}<p>
 
-    
-        <table>
+    <style>
+
+        #header{
+            color: purple;
+            
+        
+        }
+        #px1{
+            color : red;
+            
+        }
+        #px2{
+            color : yellow;
+            
+        }
+        #px3{
+            color : green;
+            
+        }
+
+        #px5{
+            color : orange;
+            
+        }
+        
+        h5.class{
+            color: pink
+        }
+        p.px4{
+            color : blue;
+        }
+
+
+        .card {
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 20px;
+            background-color: orange;
+            width: 1000px; /*bikin width tablenya*/
+            margin: 0 auto; /* bikin ke tengah */
+        }
+
+        
+        .custom-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px; 
+        }
+
+        .custom-table th,
+        .custom-table td {
+            padding: 10px;
+            border: 1px solid #ccc;
+            text-align: left;
+            background-color: aquamarine; /* warna isi tablenya*/
+        }
+
+        .custom-table th {
+            background-color: red; /*warna isi table headernya*/
+        }
+
+        
+       
+        
+        
+        
+    </style>
+      <div class = "card">
+        <table class = "custom-table">
             <tr>
                 <th>Name</th>
                 <th>Ammount</th>
@@ -27,11 +94,24 @@
                 <tr>
                     <td>{{item.name}}</td>
                     <td>{{item.amount}}</td>
-                    <td>{{item.description}}</td>
+                    <td>{{item.description}}
+                        <a href="{% url 'main:edit_item' item.pk %}">
+                            <button>
+                                Edit
+                            </button>
+                        </a>
+                        <a href="{% url 'main:delete_item' item.pk %}">
+                            <button>
+                                Delete
+                            </button>
+                        </a>
+                    </td>
                     
                 </tr>
             {% endfor %}
         </table>
+      </div>
+        
         
         <br />
 

@@ -8,18 +8,18 @@
 
 <div class = "login">
 
-    <h1>Login</h1>
+    <h1 id = "login1">Login</h1>
 
     <form method="POST" action="">
         {% csrf_token %}
         <table>
             <tr>
-                <td>Username: </td>
+                <td id = "login2">Username: </td>
                 <td><input type="text" name="username" placeholder="Username" class="form-control"></td>
             </tr>
                     
             <tr>
-                <td>Password: </td>
+                <td id = "login3">Password: </td>
                 <td><input type="password" name="password" placeholder="Password" class="form-control"></td>
             </tr>
 
@@ -41,5 +41,18 @@
     Don't have an account yet? <a href="{% url 'main:register' %}">Register Now</a>
 
 </div>
+
+<style>
+    #login1{
+        color:brown;
+    }
+    #login2{
+        color :aquamarine;
+    }
+    #login3{
+        color :coral;
+    }
+
+</style>
 
 {% endblock content %}

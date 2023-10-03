@@ -480,6 +480,210 @@ lalu kita akan bisa melihat last login di appnya
 
 </details>
 
+<details>
+    <summary>Tugas 5 </summary>
+
+1.  Jelaskan manfaat dari setiap element selector dan kapan waktu yang tepat untuk menggunakannya.
+
+Elemen selektor adalah salah satu jenis selektor CSS yang digunakan untuk memilih dan menggaya elemen HTML berdasarkan jenis elemennya.
+
+a. Universal Selector (*):
+
+Manfaat: Universal selector memilih semua elemen dalam 
+dokumen HTML.
+
+
+Kapan Digunakan: Universal selector sebaiknya digunakan dengan hati-hati karena dapat mempengaruhi semua elemen dalam dokumen. Ini berguna jika Anda perlu menerapkan gaya umum untuk semua elemen.
+
+b. Type Selector (Elemen Selector):
+
+Manfaat: Type selector memilih elemen berdasarkan jenis elemennya (misalnya, div, p, h1, dll.).
+
+
+Kapan Digunakan: Digunakan ketika Anda ingin menggaya semua elemen dengan jenis tertentu dalam dokumen. Ini adalah salah satu selektor paling umum yang digunakan.
+
+c. Class Selector (Selektor Kelas):
+
+Manfaat: Class selector memilih elemen berdasarkan atribut class yang ditetapkan pada elemen.
+
+
+Kapan Digunakan: Cocok digunakan ketika Anda ingin menggaya sekelompok elemen yang memiliki atribut class yang sama. Ini memungkinkan Anda menerapkan gaya khusus pada elemen tertentu.
+
+d. ID Selector (Selektor ID):
+
+Manfaat: ID selector memilih elemen berdasarkan atribut id yang ditetapkan pada elemen.
+
+
+Kapan Digunakan: Sebaiknya digunakan dengan bijak karena ID harus unik dalam satu halaman HTML. Biasanya digunakan untuk mengidentifikasi dan menggaya elemen tertentu yang unik.
+
+e. Attribute Selector (Selektor Atribut):
+
+Manfaat: Attribute selector memilih elemen berdasarkan nilai atribut mereka.
+
+Kapan Digunakan: Berguna ketika Anda ingin memilih elemen berdasarkan atribut khusus, misalnya, untuk menggaya semua tautan dengan atribut href tertentu.
+
+f. seudo-class Selector (Selektor Pseudo-class):
+
+Manfaat: Pseudo-class selector memilih elemen dalam keadaan tertentu atau interaksi pengguna, seperti :hover, :active, :focus, dll.
+
+Kapan Digunakan: Digunakan untuk memberikan efek gaya saat pengguna berinteraksi dengan elemen, seperti mengubah warna tautan saat dihover.
+
+g. Pseudo-element Selector (Selektor Pseudo-element):
+
+Manfaat: Pseudo-element selector memungkinkan Anda memilih dan menggaya bagian-bagian khusus dari elemen, seperti ::before dan ::after.
+
+Kapan Digunakan: Digunakan untuk membuat elemen tambahan sebelum atau sesudah elemen yang dipilih dan menggaya elemen tambahan tersebut.
+
+2. Jelaskan HTML5 Tag yang kamu ketahui.
+
+header: Digunakan untuk mendefinisikan bagian atas atau kepala dari sebuah halaman web. Biasanya berisi elemen-elemen seperti judul, logo, dan navigasi utama.
+
+nav: Mendefinisikan sebuah bagian navigasi dalam dokumen web. Ini digunakan untuk mengelompokkan tautan atau menu navigasi.
+
+section: Digunakan untuk mengelompokkan konten yang memiliki tema atau topik tertentu dalam halaman web. Ini membantu dalam pengorganisasian konten.
+
+details dan summary: details digunakan untuk membuat konten yang dapat diperluas dan disusutkan, dengan summary sebagai teks yang menunjukkan ringkasan dari konten yang dapat diperluas.
+
+input (dalam konteks HTML5): Berbagai jenis input seperti input type="text", input type="email", dan input type="date" yang memungkinkan pengguna memasukkan data dengan format tertentu.
+
+3.  Jelaskan perbedaan antara margin dan padding.
+
+Margin adalah ruang di luar elemen (di antara elemen dan elemen lainnya) yang membantu mengontrol jarak antara elemen ini dengan elemen-elemen lain di sekitarnya.
+
+Margin tidak memiliki latar belakang atau warna. Ini adalah area transparan yang memisahkan elemen dari elemen-elemen lainnya.
+
+Padding adalah ruang di dalam elemen, di antara batas elemen dan kontennya sendiri. Ini memberikan jarak antara konten elemen dan tepi elemen tersebut.
+
+Padding digunakan untuk mengontrol seberapa dekat atau jauh konten elemen dari tepinya.
+
+4. Jelaskan perbedaan antara framework CSS Tailwind dan Bootstrap. Kapan sebaiknya kita menggunakan Bootstrap daripada Tailwind, dan sebaliknya?
+
+Tailwind CSS: Tailwind CSS adalah kerangka kerja CSS utilitas pertama yang memungkinkan Anda membangun tampilan web dengan memanfaatkan banyak kelas utilitas. Artinya menggabungkan berbagai kelas ke elemen HTML untuk menggaya dan mengatur tampilan.
+
+Bootstrap: Bootstrap adalah kerangka kerja CSS berbasis komponen. Artinya menggunakan komponen-komponen yang telah ditentukan sebelumnya dan dikustomisasi sesuai kebutuhan Anda.
+
+Tailwind CSS: Tailwind sangat fleksibel dan memungkinkan untuk menyesuaikan setiap aspek tampilan dengan mudah dengan mengedit konfigurasi kelas-kelas utilitas yang ada.
+
+Bootstrap: Bootstrap menawarkan kustomisasi yang lebih terbatas karena komponen-komponennya sudah dibuat sebelumnya. Kita perlu menimpa gaya-gaya bawaan Bootstrap untuk membuat tampilan yang unik.
+
+Bootstrap Sebaiknya Digunakan:
+
+Ketika ingin membangun tampilan dengan cepat menggunakan komponen yang sudah ada.
+
+Ketika tidak memerlukan tingkat kustomisasi yang tinggi.
+
+Ketika mengutamakan keseragaman dalam desain tampilan web.
+
+Tailwind CSS Sebaiknya Digunakan:
+
+Ketika ingin tingkat kustomisasi yang tinggi dan fleksibilitas dalam merancang tampilan.
+
+Ketika tidak keberatan dengan ukuran file CSS yang lebih besar.
+
+Ketika ingin memanfaatkan pendekatan utilitas CSS untuk mengatur tampilan.
+
+5. Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial).
+
+1. Kustomisasi desain pada templat HTML yang telah dibuat pada Tugas 4 dengan menggunakan CSS atau CSS framework (seperti Bootstrap, Tailwind, Bulma) dengan ketentuan sebagai berikut
+
+Pertama kita menambahkan file bootstrap nya dulu dengan cara menambahkan kode ini pada base.html di bagian head:
+        link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous"
+
+
+
+lalu kita tambahkan ini
+Dengan menambahkan kode bootstrap dibawah ini untuk menambahkan navigation bar nya
+
+
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+            <div class="container-fluid">
+              <a class="navbar-brand" href="#">Navbar</a>
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                  <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="#">Home</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#">Link</a>
+                  </li>
+                  <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                      Dropdown
+                    </a>
+                    <ul class="dropdown-menu">
+                      <li><a class="dropdown-item" href="#">Action</a></li>
+                      <li><a class="dropdown-item" href="#">Another action</a></li>
+                      <li><hr class="dropdown-divider"></li>
+                      <li><a class="dropdown-item" href="#">Something else here</a></li>
+                    </ul>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link disabled" aria-disabled="true">Disabled</a>
+                  </li>
+                </ul>
+                <form class="d-flex" role="search">
+                  <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                  <button class="btn btn-outline-success" type="submit">Search</button>
+                </form>
+              </div>
+            </div>
+          </nav>
+
+
+2. Kustomisasi halaman login, register, dan tambah inventori semenarik mungkin.
+
+Dengan menambahkan
+
+kode di bagian style contoh
+  color : blue
+   kita sudah menambahkan warnanya
+
+Kodenya bisa diliat di login.html main.html register.html dan base.html
+
+3. Kustomisasi halaman daftar inventori menjadi lebih berwarna maupun menggunakan apporach lain seperti menggunakan Card.
+
+Dengan menambahkan kode css di style seperti ini 
+
+Bisa dilihat di kode main.html untuk customisasi table dll.
+
+    .card {
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 20px;
+            background-color: orange;
+            width: 1000px; 
+            margin: 0 auto; 
+        }
+
+        
+        .custom-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px; 
+        }
+
+        .custom-table th,
+        .custom-table td {
+            padding: 10px;
+            border: 1px solid #ccc;
+            text-align: left;
+            background-color: aquamarine; /* warna isi tablenya*/
+        }
+
+        .custom-table th {
+            background-color: red; /*warna isi table headernya*/
+        }
+
+
+
+
+
+
+</details>
+
 
 
 
