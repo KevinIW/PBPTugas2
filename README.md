@@ -1,6 +1,6 @@
 
 
-Link Url Website : https://website-v1.adaptable.app/main/
+Link Url Website : http://kevin-ignatius-tugas.pbp.cs.ui.ac.id/
 
 <details>
     <summary>Tugas 2 </summary>
@@ -680,6 +680,203 @@ Bisa dilihat di kode main.html untuk customisasi table dll.
 
 
 
+
+
+</details>
+
+<details>
+    <summary>Tugas 6</summary>
+
+
+1. Jelaskan perbedaan antara asynchronous programming dengan synchronous programming.
+
+
+Synchronous Programming :
+
+Dalam kode yang bersifat synchronous, setiap tugas dieksekusi secara berurutan, satu per satu. Ketika satu tugas selesai, barulah tugas berikutnya dapat dimulai. 
+
+Jika sebuah tugas memerlukan waktu yang lama untuk menyelesaikan operasinya, seluruh eksekusi program akan diblokir atau terhenti sampai tugas tersebut selesai. 
+
+Asynchronous Programming (Non-blocking):
+
+Dalam kode yang bersifat asynchronous, tugas-tugas dapat dieksekusi secara paralel atau bersamaan. Tugas yang membutuhkan waktu lama tidak menghentikan eksekusi tugas-tugas lain.
+
+Saat tugas yang membutuhkan waktu lama sedang berjalan, aplikasi tetap dapat menjalankan tugas-tugas lainnya tanpa harus menunggu.
+
+2. Dalam penerapan JavaScript dan AJAX, terdapat penerapan paradigma event-driven programming. Jelaskan maksud dari paradigma tersebut dan sebutkan salah satu contoh penerapannya pada tugas ini.
+
+Paradigma event-driven programming adalah salah satu pendekatan dalam pemrograman di mana aliran eksekusi program dikendalikan oleh kejadian (event) yang terjadi. Dalam paradigma ini, program tidak berjalan secara linier dari atas ke bawah, tetapi berfungsi sebagai pemantau terhadap berbagai jenis kejadian yang dapat terjadi. 
+
+Salah satu contoh penerapan paradigma event-driven programming dalam JavaScript dan AJAX adalah saat meng-handle event klik pada tombol untuk memulai proses AJAX. Misalkan program memiliki tombol "Add Item" yang, ketika diklik, akan mengambil data dari server menggunakan AJAX dan kemudian menampilkan data tersebut di halaman web. 
+
+3. Jelaskan penerapan asynchronous programming pada AJAX.
+
+Asynchronous programming pada AJAX (Asynchronous JavaScript and XML) adalah konsep kunci yang memungkinkan Anda untuk mengirim permintaan HTTP secara asinkron, menerima respons, dan menghandle respons tanpa menghentikan eksekusi kode JavaScript lainnya atau menghalangi responsifitas aplikasi web. 
+
+Contoh penerapannya ada 3 yaitu 
+
+a. Callback function
+
+b.  Promise
+
+c. Async/Await
+
+4. Pada PBP kali ini, penerapan AJAX dilakukan dengan menggunakan Fetch API daripada library jQuery. Bandingkanlah kedua teknologi tersebut dan tuliskan pendapat kamu teknologi manakah yang lebih baik untuk digunakan.
+
+Menurut saya lebih bagus menggunakan fetch API, pertama karena fetch API merupakan bagian dari standar JavaScript modern dan tersedia di semua browser terbaru. Jquery sudah ada sejak lama sehingga tidak up-to-date. Fetch API juga lebih ringan dan sederhana dibandingkan dengan jquery sehingga lebih bagus menggunakan fetch API.
+
+5. Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial).
+
+ Mengubah tugas 5 yang telah dibuat sebelumnya menjadi menggunakan AJAX.
+
+1. Ubahlah kode tabel data item agar dapat mendukung AJAX GET.
+ 
+
+Pertama kita menghapus kode tabel yang ada pada tugas sebelumnya lalu menambahkan kode ini untuk mendukung AJAX GET. Kita menambahkan ini pada kode main.html
+
+    <script>
+            async function getItems() {
+                return fetch("{% url 'main:get_item_json' %}").then((res) => res.json())
+            }
+    </script>
+
+     <table id = "custom-table"> </table>
+
+
+2. Lakukan pengambilan task menggunakan AJAX GET.
+Dengan kode diatas kita jadi bisa melakukan method GET dengan AJAX setelah itu tambahkan ini pada views.py
+
+    def get_item_json(request):
+    product_item = Item.objects.all()
+    return HttpResponse(serializers.serialize('json', product_item))
+
+Lalu tambahkan link url nya pada urls.py
+
+     path('get-item/', get_item_json, name='get_item_json'),
+
+Dengan 3 kode diatas kita sudah berhasil membuat AJAX GET
+
+
+AJAX POST
+
+3.  Buatlah sebuah tombol yang membuka sebuah modal dengan form untuk menambahkan item.
+
+pertama kita menuliskan kode ini di main.html
+
+     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Add Item by AJAX</button>
+        
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Add New Item</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="form" onsubmit="return false;">
+                            {% csrf_token %}
+                            <div class="mb-3">
+                                <label for="name" class="col-form-label">Name:</label>
+                                <input type="text" class="form-control" id="name" name="name"></input>
+                            </div>
+                            <div class="mb-3">
+                                <label for="price" class="col-form-label">Amount:</label>
+                                <input type="number" class="form-control" id="amount" name="amount"></input>
+                            </div>
+                            <div class="mb-3">
+                                <label for="description" class="col-form-label">Description:</label>
+                                <textarea class="form-control" id="description" name="description"></textarea>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary" id="button_add" data-bs-dismiss="modal">Add Item</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+Kode baris pertama untuk membuat tombolnya dan bawahnya untuk membuat modal sebagai form untuk ditambahkan kepada item
+
+4. Buatlah fungsi view baru untuk menambahkan item baru ke dalam basis data.
+
+Kita tambahkan kode dibawah ini pada views.py
+
+    @csrf_exempt
+    def add_item_ajax(request):
+    if request.method == 'POST':
+        name = request.POST.get("name")
+        amount = request.POST.get("amount")
+        description = request.POST.get("description")
+        user = request.user
+
+        new_item = Item(name=name, amount=amount, description=description, user=user)
+        new_item.save()
+        return HttpResponse(b"CREATED", status=201)
+
+    return HttpResponseNotFound()
+
+Dengan kode diatas kita akan memasukan item baru ke basis datanya. Kita tambahkan setiap attribute pada modelnya yang kita buat.
+
+5. Buatlah path /create-ajax/ yang mengarah ke fungsi view yang baru kamu buat.
+
+Kita tambahkan kode dibawah ini di urls.py
+
+    path('create-item-ajax/', add_item_ajax, name='add_item_ajax'),
+
+6. Hubungkan form yang telah kamu buat di dalam modal kamu ke path /create-ajax/.
+
+Untuk melakukan ini tambahkan kode pada main.html di bagian scripts
+
+    
+            function addItem() {
+                fetch("{% url 'main:add_item_ajax' %}", {
+                    method: "POST",
+                    body: new FormData(document.querySelector('#form'))
+                }).then(refreshItems)
+        
+                document.getElementById("form").reset()
+                return false
+            }
+        
+            document.getElementById("button_add").onclick = addItem
+        
+Dengan kode diatas kita membuat sebuah item pada ajak yaitu add_item_ajax atau pada path create-item-ajax di urls.py
+
+7. Lakukan refresh pada halaman utama secara asinkronus untuk menampilkan daftar item terbaru tanpa reload halaman utama secara keseluruhan.
+
+Untuk melakukan ini tambahkan kode pada main.html di bagian scripts
+
+    async function refreshItems() {
+                document.getElementById("custom-table").innerHTML = ""
+                const products = await getItems()
+                let htmlString = `<tr>
+                    <th>Name</th>
+                    <th>Amount</th>
+                    <th>Description</th>
+                
+                </tr>`
+                products.forEach((item) => {
+                    htmlString += `\n<tr>
+                    <td>${item.fields.name}</td>
+                    <td>${item.fields.amount}</td>
+                    <td>${item.fields.description}</td>
+                    <
+                </tr>` 
+                })
+                
+                document.getElementById("custom-table").innerHTML = htmlString
+            }   
+        
+Dengan kode diatas kita akan menrefresh item setiap ada perubahan yang terjadi. Tidak melalui refresh halaman utama
+
+8. Melakukan perintah collectstatic.
+tuliskan ini pada cmd untuk melakukannya
+    
+    python manage.py collectstatic
+
+lalu akan muncul folder static seperti yang ada pada github ini
 
 
 </details>

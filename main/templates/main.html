@@ -37,15 +37,16 @@
             color : blue;
         }
 
-
+/*
         .card {
             border: 1px solid #ccc;
             border-radius: 5px;
             padding: 20px;
             background-color: orange;
-            width: 1000px; /*bikin width tablenya*/
-            margin: 0 auto; /* bikin ke tengah */
+            width: 1000px; 
+            margin: 0 auto; 
         }
+        */
 
         
         .custom-table {
@@ -73,6 +74,7 @@
         .custom-table th {
             background-color: red; /*warna isi table headernya*/
         }
+       
 
         
        
@@ -80,7 +82,10 @@
         
         
     </style>
-      <div class = "card">
+
+
+
+      
 
         <h1 id = "px1">Pengelolaan Stok Produk toko PBP</h1>
 
@@ -92,36 +97,85 @@
         <h5 class  = "class">Class: </h5>
         <p class = "px4">{{ class }}<p>
 
-        <table class = "custom-table">
-            <tr>
-                <th>Name</th>
-                <th>Ammount</th>
-                <th>Description</th>
+        <table id = "custom-table"> </table>
+
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Add Item by AJAX</button>
+        
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Add New Item</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="form" onsubmit="return false;">
+                            {% csrf_token %}
+                            <div class="mb-3">
+                                <label for="name" class="col-form-label">Name:</label>
+                                <input type="text" class="form-control" id="name" name="name"></input>
+                            </div>
+                            <div class="mb-3">
+                                <label for="price" class="col-form-label">Amount:</label>
+                                <input type="number" class="form-control" id="amount" name="amount"></input>
+                            </div>
+                            <div class="mb-3">
+                                <label for="description" class="col-form-label">Description:</label>
+                                <textarea class="form-control" id="description" name="description"></textarea>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary" id="button_add" data-bs-dismiss="modal">Add Item</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            async function getItems() {
+                return fetch("{% url 'main:get_item_json' %}").then((res) => res.json())
+            }
+        
+            async function refreshItems() {
+                document.getElementById("custom-table").innerHTML = ""
+                const products = await getItems()
+                let htmlString = `<tr>
+                    <th>Name</th>
+                    <th>Amount</th>
+                    <th>Description</th>
                 
-            </tr>
+                </tr>`
+                products.forEach((item) => {
+                    htmlString += `\n<tr>
+                    <td>${item.fields.name}</td>
+                    <td>${item.fields.amount}</td>
+                    <td>${item.fields.description}</td>
+                    <
+                </tr>` 
+                })
+                
+                document.getElementById("custom-table").innerHTML = htmlString
+            }   
         
-            {% for item in items %}
-                <tr>
-                    <td>{{item.name}}</td>
-                    <td>{{item.amount}}</td>
-                    <td>{{item.description}}
-                        <a href="{% url 'main:edit_item' item.pk %}">
-                            <button>
-                                Edit
-                            </button>
-                        </a>
-                        <a href="{% url 'main:delete_item' item.pk %}">
-                            <button>
-                                Delete
-                            </button>
-                        </a>
-                    </td>
-                    
-                </tr>
-            {% endfor %}
-        </table>
-      </div>
+            refreshItems()
         
+            function addItem() {
+                fetch("{% url 'main:add_item_ajax' %}", {
+                    method: "POST",
+                    body: new FormData(document.querySelector('#form'))
+                }).then(refreshItems)
+        
+                document.getElementById("form").reset()
+                return false
+            }
+        
+            document.getElementById("button_add").onclick = addItem
+        
+        
+        </script>
+
         
         <br />
 
