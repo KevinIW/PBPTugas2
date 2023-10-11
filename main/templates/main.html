@@ -37,7 +37,7 @@
             color : blue;
         }
 
-/*
+
         .card {
             border: 1px solid #ccc;
             border-radius: 5px;
@@ -46,24 +46,24 @@
             width: 1000px; 
             margin: 0 auto; 
         }
-        */
+        
 
         
-        .custom-table {
+        #custom-table {
             width: 100%;
             border-collapse: collapse;
             margin-top: 10px; 
         }
 
-        .custom-table th,
-        .custom-table td {
+        #custom-table th,
+        #custom-table td {
             padding: 10px;
             border: 1px solid #ccc;
             text-align: left;
             background-color: aquamarine; /* warna isi tablenya*/
         }
 
-        .custom-table td:last-child{
+        #custom-table td:last-child{
             padding: 10px;
             border: 1px solid #ccc;
             text-align: left;
@@ -71,7 +71,7 @@
 
         }
 
-        .custom-table th {
+        #custom-table th {
             background-color: red; /*warna isi table headernya*/
         }
        
@@ -97,7 +97,11 @@
         <h5 class  = "class">Class: </h5>
         <p class = "px4">{{ class }}<p>
 
-        <table id = "custom-table"> </table>
+        <div class = "card">
+            <table id = "custom-table"> </table>
+        </div>
+
+        
 
         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Add Item by AJAX</button>
         
